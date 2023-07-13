@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Api regression org" parallel="methods" thread-count="5">
+    <test name="First test">
+        <packages>
+            <package name="api.steps"></package>
+        </packages>
+        <classes>
+            <class name="api.tests.BoardApiTests"/>
+            <class name="ui.tests.LoginPositiveTest"/>
+        </classes>
+
+    </test>
+</suite>
