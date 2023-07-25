@@ -12,6 +12,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         Configuration.baseUrl = BASE_URL;
+//        Configuration.headless = true;
     }
 
     @AfterMethod(alwaysRun = true)

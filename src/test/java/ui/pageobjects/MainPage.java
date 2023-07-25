@@ -4,11 +4,12 @@ import com.codeborne.selenide.Condition;
 import ui.elements.MainElements;
 
 import static com.codeborne.selenide.Selenide.open;
+import static utils.EnvProperties.BASE_URL;
 
 public class MainPage extends MainElements {
 
     public MainPage openLoginPage() {
-        open("http://localhost/login/");
+        open(BASE_URL);
         return new MainPage();
     }
 

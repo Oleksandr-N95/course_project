@@ -28,9 +28,14 @@ public class ProjectElements {
         return $("[class=\"fa fa-plus fa-fw\"]");
     }
     public SelenideElement newProjectButton() {
-        return $("#dropdown > ul > li:nth-child(1) > a");
+        return $("[class=\"dropdown-submenu-open\"] li:nth-child(1) > a");
     }
-
+    public SelenideElement closeProjectButton() {
+        return $("[class=\"sidebar\"] li:nth-child(15) > a");
+    }
+    public SelenideElement confirmCloseProjectButton() {
+        return $("[class=\"btn btn-red\"]");
+    }
     public SelenideElement header() {
         return $("[class=title-container]");
     }

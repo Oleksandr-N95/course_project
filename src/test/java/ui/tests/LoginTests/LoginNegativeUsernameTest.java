@@ -1,4 +1,4 @@
-package ui.tests;
+package ui.tests.LoginTests;
 
 import api.steps.UserApiSteps;
 import com.github.javafaker.Faker;
@@ -6,10 +6,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ui.pageobjects.LoginPage;
+import ui.tests.BaseTest;
 
 import java.util.Random;
 
-public class LoginNegativePasswordTest extends BaseTest{
+public class LoginNegativeUsernameTest extends BaseTest {
 
     private final static Faker faker = new Faker();
     static Random random = new Random();
@@ -22,14 +23,13 @@ public class LoginNegativePasswordTest extends BaseTest{
     @BeforeMethod
     public void prepareDataForTest() {
         userId = userApiSteps.createUser(USERNAME, PASSWORD);
-        System.out.println(userId);
     }
 
     @Test
     public void loginByNewUser() {
         new LoginPage()
                 .openLoginPage()
-                .loginByUser(USERNAME, faker.number().digit())
+                .loginByUser(faker.name().username(), PASSWORD)
                 .assertMainSectionIsOpened();
     }
 
@@ -38,3 +38,4 @@ public class LoginNegativePasswordTest extends BaseTest{
         userApiSteps.deleteUser(userId);
     }
 }
+

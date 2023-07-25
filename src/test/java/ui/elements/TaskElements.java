@@ -11,7 +11,7 @@ public class TaskElements {
     }
 
     public SelenideElement newTaskButton() {
-        return $("#dropdown > ul > li:nth-child(1) > a");
+        return $("[class=\"dropdown-submenu-open\"] li:nth-child(1) > a");
     }
     public SelenideElement titleString() {
         return $("[id=\"form-title\"]");
@@ -40,19 +40,19 @@ public class TaskElements {
         return $("[title=\"Dashboard\"]");
     }
     public SelenideElement myTaskButton() {
-        return $("#dashboard > div.sidebar > ul > li:nth-child(3) > a");
+        return $("[class=\"sidebar\"] li:nth-child(3) > a");
     }
     public SelenideElement taskDropDown() {
-        return $("#dashboard > div.sidebar-content > div.table-list > div.table-list-row.color-yellow > div:nth-child(1) > div > a");
+        return $("[class=\"table-list-row color-yellow\"] div:nth-child(1) > a");
     }
     public SelenideElement closeTaskDropDown() {
-        return $("#dropdown > ul > li:nth-child(14) > a > i");
+        return $("[id=\"dropdown\"] li:nth-child(14) > a");
     }
     public SelenideElement closeTaskButton() {
         return $("[id=\"modal-confirm-button\"]");
     }
     public SelenideElement addCommentDropDown() {
-        return $("#dropdown > ul > li:nth-child(6) > a");
+        return $("[id=\"dropdown\"] li:nth-child(6) > a");
     }
     public SelenideElement addTextArea() {
         return $("[name=\"comment\"]");

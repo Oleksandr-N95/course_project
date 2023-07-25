@@ -1,4 +1,4 @@
-package ui.tests;
+package ui.tests.TaskTests;
 
 import api.steps.ProjectApiSteps;
 import api.steps.TaskApiSteps;
@@ -6,15 +6,13 @@ import api.steps.UserApiSteps;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ui.pageobjects.CloseTaskPage;
-import ui.pageobjects.LoginPage;
-import ui.pageobjects.NewProjectPage;
-import ui.pageobjects.NewTaskPage;
+import ui.pageobjects.*;
+import ui.tests.BaseTest;
 
 import javax.swing.*;
 import java.util.Random;
 
-public class CloseTaskTest extends BaseTest{
+public class CloseTaskTest extends BaseTest {
 
     UserApiSteps userApiSteps = new UserApiSteps();
     private String userId;
@@ -39,35 +37,25 @@ public class CloseTaskTest extends BaseTest{
     @BeforeMethod
     public void prepareDataForTest() {
         userId = userApiSteps.createUser(USERNAME, PASSWORD);
-        System.out.println(userId);
         new LoginPage()
                 .openLoginPage()
                 .loginByUser(USERNAME, PASSWORD)
                 .assertMainSectionIsOpened();
-        projectId = projectApiSteps.createProject(PROJECT_NAME);
-        System.out.println(projectId);
-        new NewProjectPage()
-                .goToNewProject()
-                .projectForm(PROJECT_NAME, IDENTIFIER, TASKCHECK,TASKLIMIT)
-                .assertNewProjectPaigeIsOpened();
+        new ProjectPage()
+                .createProject(PROJECT_NAME, IDENTIFIER, TASKCHECK,TASKLIMIT)
+                .assertSummaryPaigeIsOpened();
     }
     @Test
     public void closeTaskTest(){
-        new NewTaskPage()
-                .goToCreateTask()
-                .taskForm(TITLE_STRING, TASK_TEXT_STRING, ESTIMATED_STRING, SPENT_STRING, FORM_SCORE_STRING)
+        new TaskPage()
+                .createTask(TITLE_STRING, TASK_TEXT_STRING, ESTIMATED_STRING, SPENT_STRING, FORM_SCORE_STRING)
                 .assertNewTaskPaigeIsOpened();
-        taskId = taskApiSteps.createTask(TITLE_STRING, Integer.parseInt(projectId));
-        new CloseTaskPage()
-                .goToCloseTask()
-                .closeProjectTask()
-                .assertCloseTaskPaigeIsOpened();
-        taskId = taskApiSteps.closeTask(Integer.parseInt(taskId));
+        new TaskPage()
+                .closeTask()
+                .assertCloseTaskPaige();
     }
     @AfterMethod(alwaysRun = true)
     public void removeUserAfterTest() {
-        taskApiSteps.deleteTask(taskId);
-        projectApiSteps.deleteProject(projectId);
         userApiSteps.deleteUser(userId);
     }
 }

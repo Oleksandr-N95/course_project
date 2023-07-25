@@ -9,8 +9,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 
-import static api.methods.Projects.CREATE_PROJECT;
-import static api.methods.Projects.DELETE_PROJECT;
+import static api.methods.Projects.*;
 import static utils.EnvProperties.API_TOKEN;
 import static utils.EnvProperties.API_USERNAME;
 
@@ -29,6 +28,18 @@ public class ProjectApiSteps extends BaseApiSteps{
         BodyArgs bodyArgs = BodyArgs.builder().
                 params(args)
                 .method(CREATE_PROJECT)
+                .build();
+
+        Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
+        response.then().statusCode(200);
+        Result result = response.as(Result.class);
+        return result.getResult().toString();
+    }
+    public String disableProject(int projectId){
+
+        BodyArgs bodyArgs = BodyArgs.builder().
+                params(new ProjectId(Integer.valueOf(projectId)))
+                .method(DISABLE_PROJECT)
                 .build();
 
         Response response = postRequest(API_USERNAME, API_TOKEN, bodyArgs);
