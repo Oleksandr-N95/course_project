@@ -2,14 +2,15 @@ package api.tests.ProjectApiTests;
 
 import api.steps.ProjectApiSteps;
 import api.steps.UserApiSteps;
+import api.tests.BaseAPITest;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ui.tests.BaseTest;
 
 import java.util.Random;
 
-public class CreateProjectApiTest extends BaseTest {
+public class CreateProjectApiTest extends BaseAPITest {
     static Random random = new Random();
     static int randomNumber = random.nextInt(1000);
     private static final String USERNAME = "user"+ randomNumber;
@@ -28,6 +29,7 @@ public class CreateProjectApiTest extends BaseTest {
     @Test
     public void createProjectTest () {
         projectId = projectApiSteps.createProject(PROJECTNAME);
+        Assert.assertNotNull(projectId, "The Project was not created");
     }
     @AfterMethod(alwaysRun = true)
     public void removeUserAfterTest() {

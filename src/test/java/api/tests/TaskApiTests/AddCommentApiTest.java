@@ -3,14 +3,15 @@ package api.tests.TaskApiTests;
 import api.steps.ProjectApiSteps;
 import api.steps.TaskApiSteps;
 import api.steps.UserApiSteps;
+import api.tests.BaseAPITest;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ui.tests.BaseTest;
 
 import java.util.Random;
 
-public class AddCommentApiTest extends BaseTest {
+public class AddCommentApiTest extends BaseAPITest {
     UserApiSteps userApiSteps = new UserApiSteps();
     private String userId;
     ProjectApiSteps projectApiSteps = new ProjectApiSteps();
@@ -24,6 +25,7 @@ public class AddCommentApiTest extends BaseTest {
     private final static String PROJECT_NAME = "ProjectName"+ randomNumber;
     private final static String TITLE_STRING = "NewString" + randomNumber;
     private final static String CONTENT = "NewComment" + randomNumber;
+    private String commentId;
 
     @BeforeMethod
     public void prepareDataForTest() {
@@ -33,7 +35,8 @@ public class AddCommentApiTest extends BaseTest {
     }
     @Test
     public void addCommentTest(){
-        taskApiSteps.createComment(userId, taskId, CONTENT);
+        commentId = taskApiSteps.createComment(userId, taskId, CONTENT);
+        Assert.assertNotNull(commentId, "The comment was not created");
     }
     @AfterMethod(alwaysRun = true)
     public void removeUserAfterTest() {

@@ -6,8 +6,6 @@ import api.models.args.tasks.CreateComment;
 import api.models.args.tasks.CreateTask;
 import api.models.args.tasks.OperationsTasks;
 import api.models.args.tasks.TaskId;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 
 import static api.methods.Tasks.*;
@@ -15,11 +13,6 @@ import static utils.EnvProperties.API_TOKEN;
 import static utils.EnvProperties.API_USERNAME;
 
 public class TaskApiSteps extends BaseApiSteps{
-    public void setUp() {
-        RestAssured.baseURI = "http://localhost/dashboard";
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .build();
-    }
     public String createTask(String title, int projectId) {
         CreateTask args = new CreateTask().builder()
                 .title(title)

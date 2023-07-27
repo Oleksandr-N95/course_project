@@ -17,4 +17,8 @@ public class MainPage extends MainElements {
         mainSection().shouldBe(Condition.visible);
         return this;
     }
+    public MainPage assertLoginErrorMessage() {
+        loginErrorMessage().shouldBe(Condition.visible);
+        return this;
+    }
 }

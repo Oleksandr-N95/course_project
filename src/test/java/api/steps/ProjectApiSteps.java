@@ -4,22 +4,14 @@ import api.models.Result;
 import api.models.args.BodyArgs;
 import api.models.args.projects.CreateProject;
 import api.models.args.projects.ProjectId;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
-import org.testng.annotations.BeforeMethod;
 
 import static api.methods.Projects.*;
 import static utils.EnvProperties.API_TOKEN;
 import static utils.EnvProperties.API_USERNAME;
 
 public class ProjectApiSteps extends BaseApiSteps{
-    @BeforeMethod
-    public void setUp() {
-        RestAssured.baseURI = "http://localhost/dashboard";
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .build();
-    }
+
     public String createProject(String name) {
         CreateProject args = new CreateProject().builder()
                 .name(name)

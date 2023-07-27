@@ -1,8 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Smoke tests org" parallel="methods" thread-count="5">
-    <test name="First test">
+    <test name="API tests">
         <packages>
-            <package name="api.tests"></package>
+            <package name="api.tests.ProjectApiTests"></package>
+            <package name="api.tests.TaskApiTests"></package>
         </packages>
     </test>
 </suite>

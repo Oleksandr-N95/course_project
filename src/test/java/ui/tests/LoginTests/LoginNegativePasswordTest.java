@@ -30,7 +30,7 @@ public class LoginNegativePasswordTest extends BaseTest {
         new LoginPage()
                 .openLoginPage()
                 .loginByUser(USERNAME, faker.number().digit())
-                .assertMainSectionIsOpened();
+                .loginErrorMessage();
     }
 
     @AfterMethod(alwaysRun = true)

@@ -4,10 +4,7 @@ import api.models.Result;
 import api.models.args.BodyArgs;
 import api.models.args.users.CreateUser;
 import api.models.args.users.UserId;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
-import org.testng.annotations.BeforeMethod;
 
 import static api.enums.UserRoles.USER;
 import static api.methods.Users.CREATE_USER;
@@ -16,12 +13,6 @@ import static utils.EnvProperties.API_TOKEN;
 import static utils.EnvProperties.API_USERNAME;
 
 public class UserApiSteps extends BaseApiSteps {
-    @BeforeMethod
-    public void setUp() {
-        RestAssured.baseURI = "http://localhost/";
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .build();
-    }
     public String createUser(String username, String pass) {
         CreateUser args = CreateUser.builder()
                 .username(username)
